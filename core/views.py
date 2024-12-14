@@ -57,6 +57,14 @@ def edit(request):
             return redirect('dashboard')
         else:
             messages.error(request,'Error updating your profile')
+        return render(
+        request,
+        'account/edit.html',
+        {
+            'user_form': user_form,
+            'profile_form': profile_form
+        }
+        )
     else:
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(instance=request.user.profile)
